@@ -10,7 +10,15 @@ $(function(){
 
 
     FilePond.setOptions({
-        server: 'test/',
+        server: {
+            url: '',
+            process: '/register',
+            revert: '/register',
+            headers: {
+                'X-CSRF-TOKEN': $('input[name=_token]').val()
+              }
+        },
+        onerror: (response) => console.log(response.data),
         acceptedFileTypes: [
             'application/doc'
         ]

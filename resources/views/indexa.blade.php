@@ -21,8 +21,10 @@
             }
 
             .filepond--panel-root {
+                border: 1px solid;
                 border-radius: 2em;
-                background-color: #ab4773;
+                border-color: #484f5e;
+                background: #1f2531;
                 height: 1em;
             }
 
@@ -51,7 +53,7 @@
 
     </head>
     <body class="antialiased">
-
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="file"
             class="filepond"
             name="filepond"

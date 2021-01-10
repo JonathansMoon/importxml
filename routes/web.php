@@ -13,8 +13,6 @@ use App\Http\Controllers\ImportController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [ImportController::class, 'index']);
 
 Route::post('register', [ImportController::class, 'store']);
