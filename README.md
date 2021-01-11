@@ -50,6 +50,9 @@ $ git clone https://github.com/JonathansMoon/importxml.git
 # Go into the repository
 $ cd importxml
 
+# copying the configuration example file
+$ cp .env.example .env
+
 # Run the container and wait until the process is complete
 sudo docker-compose up
 

@@ -1,6 +1,3 @@
-echo Copying the configuration example file
-docker exec -it import-app cp .env.example .env
-
 echo Install dependencies
 docker exec -it import-app composer install
 
