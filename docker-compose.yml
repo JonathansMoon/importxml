@@ -12,14 +12,6 @@ services:
         restart: always
         volumes:
           - /home/jonathan/Docker/Volumes/MySql:/var/lib/mysql
-    redis:
-        image: redis
-        container_name: import-redis
-        command: [ "redis-server", "--protected-mode", "no" ]
-        ports:
-          - '${FORWARD_REDIS_PORT:-6379}:6379'
-        volumes:
-          - /home/jonathan/Docker/Volumes/redis:/var/lib/redis
     app:
         image: ambientum/php:7.3-nginx
         container_name: import-app
@@ -31,14 +23,6 @@ services:
         links:
           - mysql
           - redis
-    adminer:
-        image: adminer
-        container_name: import-adminer
-        restart: always
-        ports:
-          - 8000:8000
-        links:
-          - mysql
     phpmyadmin:
         image: phpmyadmin
         container_name: import-phpmyadmin
