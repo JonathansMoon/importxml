@@ -20,5 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/person', [PersonController::class, 'list']);
-Route::get('/shiporder', [ShiporderController::class, 'list']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/person', [PersonController::class, 'list']);
+    Route::get('/shiporder', [ShiporderController::class, 'list']);
+});

@@ -2,8 +2,6 @@
 
 namespace App\Services;
 
-use App\ApiMessages\ApiMessages;
-use App\Models\Shiporder;
 use Exception;
 
 abstract class ImportAbstractService

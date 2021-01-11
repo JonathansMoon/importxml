@@ -3,19 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ImportRequest;
-use App\Models\Item;
-use App\Models\Shiporder;
-use App\Models\Shipto;
-use App\Services\ImportPerson;
+use App\Jobs\ImportProcessor;
 use App\Services\ImportPersonService;
-use App\Services\ImportService;
-use App\Services\ImportShiporder;
 use App\Services\ImportShiporderService;
-use Illuminate\Http\Request;
-use RecursiveArrayIterator;
-use RecursiveIteratorIterator;
+use Illuminate\Support\Facades\Hash;
 
-use function App\Helpers\formatDateAndTime;
 use function App\Helpers\xmlForJson;
 
 class ImportController extends Controller
@@ -45,7 +37,7 @@ class ImportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ImportRequest $request)
-    {
+    {dd(Hash::make($request->newPassword));
         try{
             foreach ($request->file('file') as $value) {
                 $data[] = xmlForJson($value);
@@ -56,8 +48,7 @@ class ImportController extends Controller
                 if (!isset($value['shiporder']) && !isset($value['person'])) {
                     return back()->withErrors(['message' => 'The contents of the file were not unexpected.'])->withInput();
                 }
-
-                isset($value['shiporder']) ? $this->importShiporderService->importXml($value) : $this->importPersonService->importXml($value);
+                ImportProcessor::dispatch($value, $this->importShiporderService, $this->importPersonService)->delay(now()->addSeconds(20));
             }
 
             toastr()->success('Data has been saved successfully!');

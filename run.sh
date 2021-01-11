@@ -12,3 +12,6 @@ docker exec -it import-app composer install
 
 echo Make migrations
 docker exec -it import-app php artisan migrate
+
+echo Run job for async
+php artisan queue:work
