@@ -22,7 +22,6 @@ services:
           - .:/var/www/app
         links:
           - mysql
-          - redis
     phpmyadmin:
         image: phpmyadmin
         container_name: import-phpmyadmin
