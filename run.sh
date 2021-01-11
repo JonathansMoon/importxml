@@ -13,5 +13,11 @@ docker exec -it import-app composer install
 echo Make migrations
 docker exec -it import-app php artisan migrate
 
+echo Make seed
+php artisan db:seed
+
 echo Run job for async
 php artisan queue:work
+
+echo Key generate JWT
+php artisan jwt:secret

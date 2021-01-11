@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\PersonController;
-use App\Http\Controllers\ShiporderController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\PersonController;
+use App\Http\Controllers\Api\ShiporderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,11 +16,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('login', [AuthController::class, 'login'])->name('login');
+    Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('refresh', [AuthController::class, 'refresh']);
+    Route::post('me', [AuthController::class, 'me']);
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['apiJwt'])->group(function () {
     Route::get('/person', [PersonController::class, 'list']);
     Route::get('/shiporder', [ShiporderController::class, 'list']);
 });
