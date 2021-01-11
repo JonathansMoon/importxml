@@ -84,6 +84,45 @@
                 ]
             }
         },
+        "/api/person/{id}": {
+            "get": {
+                "tags": [
+                    "protected"
+                ],
+                "summary": "Json of persons",
+                "operationId": "App\\Http\\Controllers\\Api\\PersonController::find",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "Authorization Token not found"
+                    },
+                    "404": {
+                        "description": "Person not found"
+                    },
+                    "500": {
+                        "description": "internal server error"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
         "/api/shiporder": {
             "get": {
                 "tags": [
@@ -96,6 +135,45 @@
                     },
                     "401": {
                         "description": "Authorization Token not found"
+                    },
+                    "500": {
+                        "description": "internal server error"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/shiporder/{id}": {
+            "get": {
+                "tags": [
+                    "protected"
+                ],
+                "summary": "find of shiporder",
+                "operationId": "App\\Http\\Controllers\\Api\\ShiporderController::find",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "Authorization Token not found"
+                    },
+                    "404": {
+                        "description": "Shiporder not found"
                     },
                     "500": {
                         "description": "internal server error"
@@ -121,13 +199,7 @@
             }
         }
     },
-    "security": {
-        "bearer": {
-            "type": "http",
-            "description": "Authorization token obtained from logging in.",
-            "name": "Authorization",
-            "in": "header",
-            "scheme": "bearer"
-        }
-    }
+    "security": [
+        []
+    ]
 }

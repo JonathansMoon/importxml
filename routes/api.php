@@ -31,5 +31,7 @@ Route::group([
 
 Route::middleware(['apiJwt'])->group(function () {
     Route::get('/person', [PersonController::class, 'list']);
+    Route::get('/person/{id}', [PersonController::class, 'find']);
     Route::get('/shiporder', [ShiporderController::class, 'list']);
+    Route::get('/shiporder/{id}', [ShiporderController::class, 'find']);
 });
