@@ -37,7 +37,10 @@ class ImportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ImportRequest $request)
-    {dd(Hash::make($request->newPassword));
+    {
+        if (!$request->has('file')) {
+            return back()->withErrors(['message' => 'The file field is required'])->withInput();
+        }
         try{
             foreach ($request->file('file') as $value) {
                 $data[] = xmlForJson($value);
@@ -48,7 +51,7 @@ class ImportController extends Controller
                 if (!isset($value['shiporder']) && !isset($value['person'])) {
                     return back()->withErrors(['message' => 'The contents of the file were not unexpected.'])->withInput();
                 }
-                ImportProcessor::dispatch($value, $this->importShiporderService, $this->importPersonService)->delay(now()->addSeconds(20));
+                ImportProcessor::dispatch($value, $this->importShiporderService, $this->importPersonService);
             }
 
             toastr()->success('Data has been saved successfully!');

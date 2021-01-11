@@ -35,5 +35,4 @@
     @toastr_js
     @toastr_render
     <script src="{{ asset('site/bootstrap.js') }}"></script>
-    <script src="{{ asset('site/file-validate.js') }}"></script>
 </html>

@@ -11,12 +11,17 @@ use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
 
 class ApiProtectedRoute extends BaseMiddleware
 {
+    /** @OA\Info(title="Invillia Challenge", version="0.1") */
     /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
+     * @OA\SecurityScheme(
+     *     type="http",
+     *     description="Login with email and password to get the authentication token",
+     *     name="Token based Based",
+     *     in="header",
+     *     scheme="bearer",
+     *     bearerFormat="JWT",
+     *     securityScheme="apiAuth",
+     * )
      */
     public function handle(Request $request, Closure $next)
     {

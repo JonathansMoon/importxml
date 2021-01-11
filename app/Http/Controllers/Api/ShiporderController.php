@@ -7,12 +7,17 @@ use App\Models\Shiporder;
 
 class ShiporderController extends Controller
 {
-    private $shiporder;
-
-    public function __construct(Shiporder $shiporder)
-    {
-        $this->shiporder = $shiporder;
-    }
+    /**
+     * @OA\Get(
+     *  path="/api/shiporder",
+     *  tags={"protected"},
+     *  summary="Json of shiporder",
+     *  @OA\Response(response=200, description="successful operation"),
+     *  @OA\Response(response=401, description="Authorization Token not found"),
+     *  @OA\Response(response=500, description="internal server error"),
+     *  security={{ "apiAuth": {} }}
+     * )
+     */
 
     public function list()
     {
