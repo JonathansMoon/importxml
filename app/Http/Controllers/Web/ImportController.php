@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ImportRequest;
 use App\Jobs\ImportProcessor;
 use App\Services\ImportPersonService;
 use App\Services\ImportShiporderService;
-use Illuminate\Support\Facades\Hash;
 
 use function App\Helpers\xmlForJson;
 

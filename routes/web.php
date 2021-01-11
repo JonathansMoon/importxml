@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ImportController;
+use App\Http\Controllers\Web\ImportController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

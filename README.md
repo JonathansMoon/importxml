@@ -71,6 +71,10 @@ $ docker exec -it import-app php artisan queue:work
 $ docker-compose down
 ```
 
+Examples of hosts configured by default in .env.example, but you can modify them.
+app: http://localhost:8080/
+Documentatio Swagger: http://localhost:8080/api/documentation
+
 
 To login to the system you can use your email: "desafio@gmail.com", and password "password".
 
